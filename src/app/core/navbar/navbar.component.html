@@ -1,0 +1,70 @@
+
+<nav class="navbar navbar-expand-lg bg-light navbar-light sticky-top" style="background-color: #fff !important;">
+  <div class="container-fluid">
+    <!-- Logo predeterminado -->
+    <a class="navbar-brand" id="passkeeper-logo" routerLink="/" *ngIf="!isLogged">
+      PassKeeper
+    </a>
+<!-- Logo para clientes -->
+    <a class="navbar-brand" id="passkeeper-logo" routerLink="/" *ngIf="isLogged && !isStaff">
+      PassKeeper
+    </a>
+<!-- logo para admins -->
+    <a class="navbar-brand" id="passkeeper-logo" routerLink="/" *ngIf="isLogged && isStaff">
+      PassKeeper
+    </a>
+
+
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbarSupportedContent" [ngClass]="{
+      'navbar-collapse': true,
+      'collapse': !isMenuOpen,
+      'show': isMenuOpen
+    }">
+
+    <!-- Items lado derecho -->
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link mx-2" routerLink="/" routerLinkActive="active-link-color">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#seguridad" routerLinkActive="active-link-color">Seguridad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#about-us" routerLinkActive="active-link-color">Nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#contact" routerLinkActive="active-link-color">Contacto</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLogged">
+          <a (click)="toogleLogin()" class="btn btn-primary" id="loginButton">Iniciar sesión</a>
+        </li>
+        <!-- Boton compra cliente no premium -->
+        <li class="nav-item" *ngIf="isLogged && !isStaff && !isPremium">
+          <a class="btn btn-primary" routerLink="/payments" id="loginButton">Comprar</a>
+        </li>
+        <!-- Texto para cliente premium -->
+        <li class="nav-item mt-3" *ngIf="isLogged && !isStaff && isPremium" >
+          <p class="text-primary">¡Ya eres Premium!</p>
+        </li>
+         <!-- Boton dashboard admin -->
+         <li class="nav-item" *ngIf="isLogged && isStaff">
+          <a class="btn btn-primary" routerLink="/admin" id="loginButton">Dashboard</a>
+        </li>
+
+
+        <li *ngIf="isLogged" class="nav-item">
+          <a  class="nav-link centered" id="logoutButton" (click)="logOut()">Cerrar Sesión  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+          </svg></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <app-login *ngIf="mostrarLogin" (cerrarSesion)="cerrarLogin()"></app-login>
