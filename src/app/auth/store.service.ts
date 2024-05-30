@@ -18,12 +18,12 @@ export class StoreService {
     localStorage.setItem('refresh_token', token);
   }
 
-  
+
 
   getUser(){
     return localStorage.getItem('user');
   }
-   
+
   getAccessToken(): string {
     return localStorage.getItem('access_token')||'';
   }
@@ -31,11 +31,11 @@ export class StoreService {
     return localStorage.getItem('refresh_token')||'';
   }
   clearLocalStorage(): void {
-    
+
     localStorage.removeItem('user');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('access_token');
-    
-    
+
+
   }
 }
