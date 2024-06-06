@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 
 @Component({
   selector: 'app-main',
@@ -27,6 +28,8 @@ export class MainComponent {
       }
     });
   }
+
+  @ViewChild(LoginComponent) loginComponent!: LoginComponent;
 
   onButtonClick() {
     if (this.isLogged) {

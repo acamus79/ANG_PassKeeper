@@ -42,8 +42,6 @@ export class NavbarComponent implements OnInit {
 
   @ViewChild(LoginComponent) loginComponent!: LoginComponent;
 
-  
-
 
   ngOnInit() {
     const userData = localStorage.getItem('user');
