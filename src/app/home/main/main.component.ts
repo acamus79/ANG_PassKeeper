@@ -34,7 +34,7 @@ export class MainComponent {
   onButtonClick() {
     if (this.isLogged) {
       // Redirige a la URL deseada cuando el usuario está logeado
-      this.router.navigate(['/ruta-destino']);
+      this.router.navigate(['/payments/']);
     } else {
       // Redirige a la página de login si el usuario no está logeado
       this.router.navigate(['/login']);
